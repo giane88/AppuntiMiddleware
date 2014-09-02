@@ -1,4 +1,4 @@
-\section{Processi}\label{capitolo4}
+\section{Concorrenza}\label{capitolo1}
 In questo capitolo vedremo come i processi giochino un ruolo fondamentale nei sistemi distribuiti. Il concetto di processo proviene dall'ambito dei sistemi operativi ed è definito come un programma in esecuzione.\\
 Per organizzare efficacemente un sistema client-server è spesso necessario utilizzare tecniche di \emph{multithreading} in quanto questa tecnica permette ai client e ai server di essere costruiti in modo tale che la comunicazione e l'elaborazione locale siano sovrapposti ottenendo un alto livello di prestazione.
 \subsection{Thread}
@@ -86,10 +86,10 @@ Esistono diversi modi in cui un pthread può terminare:
 \end{itemize}
 Tramite la \texttt{pthread\_exit} è possibile specificare uno stato di terminazione che può essere restituito alla sincronizzazione del thread. Inoltre è molto importante ricordare che la \texttt{pthread\_exit} non chiude i file ed ogni file aperto all'interno del thread rimane aperto anche alla sua terminazione.
 Se la funzione \emph{main} termina con una \texttt{pthread\_exit} prima che i threads siano conclusi i threads proseguono la loro esecuzione altrimenti terminano alla conclusione del \emph{main}.
-Vediamo un esempio di creazione e terminazione dei thread in C nel Listato \ref{lst:thread}
+Vediamo un esempio di creazione e terminazione dei thread in C nel  Listato \ref{lst:thread}
 \lstinputlisting[language=C,caption={Esempio di uso della API pthread},label=lst:thread]{listati/ThreadExample1.c}
 \paragraph{Passaggio di argomenti}
-Come abbiamo visto nella \emph{pthread\_create} è possibile impostare l'ultimo attributo con un attributo da passare alla routine che il thread eseguirà. Tale attributo deve essere convertito in un puntatore di tipo void. Tale passaggio presenta però alcuni tranelli, vediamo come nel Listato \ref{lst:wrongpass} come il passaggio per indirizzo crei un errore nell'esecuzione. Infatti, provando ad eseguire tale programma si rischia che più di un thread acceda contemporaneamente alla variabile \emph{t} e si rischiano quindi di ottenere dei valori sbagliati.
+Come abbiamo visto nella \emph{pthread\_create} è possibile impostare l'ultimo attributo con un attributo da passare alla routine che il thread eseguirà. Tale attributo deve essere convertito in un puntatore di tipo void. Tale passaggio presenta però alcuni tranelli, vediamo come nel  Listato \ref{lst:wrongpass} come il passaggio per indirizzo crei un errore nell'esecuzione. Infatti, provando ad eseguire tale programma si rischia che più di un thread acceda contemporaneamente alla variabile \emph{t} e si rischiano quindi di ottenere dei valori sbagliati.
 \begin{lstlisting}[language=C,caption={Errore nel passaggio di argomenti ad un thread},label=lst:wrongpass]
 int rc, t;
 for(t=0; t<NUM_THREADS; t++) {
@@ -110,7 +110,7 @@ Creazione del thread 3
 4: Hello World!
 Creazione del thread 4
 \end{verbatim}
-Per passare un argomento ad una routine è necessario controllare l'accesso ai dati da parte dei threads in modo che non vi siano possibili conflitti come nel caso del Listato \ref{lst:rightpass}. Nel quale viene passato ad ogni routine un puntatore ad un dato diverso.
+Per passare un argomento ad una routine è necessario controllare l'accesso ai dati da parte dei threads in modo che non vi siano possibili conflitti come nel caso del  Listato \ref{lst:rightpass}. Nel quale viene passato ad ogni routine un puntatore ad un dato diverso.
 \begin{lstlisting}[language=C,caption={Metodo corretto nel passaggio di argomenti ad un thread},label=lst:rightpass]
 int *taskids[NUM_THREADS];
 for(t=0; t<NUM_THREADS; t++) {
@@ -131,7 +131,7 @@ dove i diversi campi sono:
 \item[thid] è l'identificativo del thread su cui fare la join
 \item[thread\_return] è il possibile valore di ritorno che si ottiene dall'invocazione della \texttt{pthread\_exit}
 \end{description}
-Il funzionamento della funzione di \emph{join} è specificato in \figurename\, \ref{fig:join}
+Il funzionamento della funzione di \emph{join} è specificato in \figurename \ref{fig:join}
 \begin{figure}[htb]
 \centering
 \includegraphics[scale=0.7]{img/join.png}
@@ -208,7 +208,7 @@ public class ProvaThread {
 \end{lstlisting}
 Come vediamo la nostra classe che implementa un thread estende l'oggetto \emph{Thread}, in questa classe viene fatto l'override del metodo \texttt{run()} il quale non è altro che la routine che viene eseguita dal thread. Per far partire il thread è necessario richiamare il metodo \texttt{start()} dopo aver creato un nuovo oggetto.\\
 Un'altra possibile soluzione è l'utilizzo dell'interfaccia \texttt{Runnable} la quale specifica soltanto che deve esistere un metodo \texttt{run()} che deve essere implementato. La classe \texttt{Thread} implementa anch'essa l'interfaccia \texttt{Runnable}.
-Come vediamo nel Listato\,\ref{lst:runnable} a differenza del caso precedente oltre all'oggetto \emph{MyThread} deve anche essere creato un oggetto \emph{Thread} corrispondente, al quale viene poi passato l'oggetto MyThread, ed infine il metodo \texttt{start()}viene invocato sull'oggetto Thread.
+Come vediamo nel  Listato \ref{lst:runnable} a differenza del caso precedente oltre all'oggetto \emph{MyThread} deve anche essere creato un oggetto \emph{Thread} corrispondente, al quale viene poi passato l'oggetto MyThread, ed infine il metodo \texttt{start()}viene invocato sull'oggetto Thread.
 \lstinputlisting[language=Java,caption={Utilizzo dell'interfaccia Runnable},label=lst:runnable]{listati/MyThread.java}
 L'esecuzione dei thread non segue un ordine predefinito ma lo stesso codice può produrre risultati diversi su diversi computer o addirittura sullo stesso. Questo caratteristica è chiamata \emph{non-determinismo} ed è un punto focale nella concorrenza.\\
 Java di per se implementa il modello \emph{preemtive} e nel caso sia disponibile un meccanismo di \emph{time-slicing} allora java esegue i thread con la stessa priorità tramite una meccanismo di \emph{round-robin}.\\
@@ -232,7 +232,7 @@ In un sistema sicuro ogni oggetto protegge se stesso da possibili violazioni del
 \item Esclusione dinamica (Locking)
 \item Esclusione strutturale
 \end{itemize}
-Per quanto riguarda l'\textbf{immutabilità} si ottiene creando le classi in modo che gli oggetti proteggano se stessi come nel Listato\,\ref{lst:immutabile}
+Per quanto riguarda l'\textbf{immutabilità} si ottiene creando le classi in modo che gli oggetti proteggano se stessi come nel  Listato \ref{lst:immutabile}
 \begin{lstlisting}[language=Java,caption={Esempio di oggetto immutabile},label=lst:immutabile]
 class ImmutableAdder {
 	private final int offset;
@@ -245,7 +245,7 @@ class ImmutableAdder {
 }
 \end{lstlisting}
 I vantaggi di questa tecnica sono il fatto che non richiede sincronizzazione ed è molto utile per condividere degli oggetti tra i threads, ma sfortunatamente ha dei limiti di applicabilità.\\
-Per parlare di sincronizzazione introduciamo prima l'esempio del Listato\,\ref{lst:sincro}
+Per parlare di sincronizzazione introduciamo prima l'esempio del  Listato \ref{lst:sincro}
 \begin{lstlisting}[language=Java,caption={Esempio sincronizzazione},label=lst:sincro]
 public class RGBColor {
 	private int r;
@@ -262,7 +262,7 @@ public class RGBColor {
 \end{lstlisting}
 Ora immaginiamo che due thread chiamati \emph{red} e \emph{blue} vogliano impostare contemporaneamente il loro colore sullo stesso oggetto di tipo \texttt{RGBColor} a questo punto potrebbero verificarsi dei problemi in quanto i due thread tentano di scrivere lo stesso dato violando così la sua integrità.\\
 Per risolvere questo problema java tramite il locking serializza l'esecuzione del codice dichiarato \emph{synchronized}. Ogni istanza di un oggetto possiede tali meccanismi di lock in quanto derivati dalla classe \texttt{Object}, l'unica eccezione si ha con l'utilizzo di array, infatti, bloccare un array non blocca gli elementi di tale array.\\
-Esistono due modi per bloccare una parte di codice, si può dichiarare \emph{synchronized} un intero metodo o un singolo blocco di codice, in caso di singolo blocco la funzione \texttt{synchronized} richiede l'oggetto sul quale effettuare il lock (Listato\,\ref{lst:syncobj} e Listato\,\ref{lst:syncmeto}).\\
+Esistono due modi per bloccare una parte di codice, si può dichiarare \emph{synchronized} un intero metodo o un singolo blocco di codice, in caso di singolo blocco la funzione \texttt{synchronized} richiede l'oggetto sul quale effettuare il lock ( Listato \ref{lst:syncobj} e  Listato \ref{lst:syncmeto}).\\
 \pagebreak
 \begin{lstlisting}[language=Java,caption={Sincronizzazione di una parte di codice},label=lst:syncobj]
 synchronized (object) {
@@ -325,7 +325,7 @@ Il punto principale è quello avere un punto di uscita dal thread. Esistono quat
 \end{itemize}
 Per quanto riguarda le collezioni, il framework \texttt{java.util.Collection}  basata su uno schema \emph{Adapter} permette la sincronizzazioni delle classi collection, infatti, ad eccezione di \texttt{Vector} e \texttt{Hashtable} le classi base per le collezioni (come \texttt{java.utili.ArrayList}) sono non sincronizzate. Sono state così costruite una serie di classi sincronizzate attorno alle classi base come la \texttt{Collection.synchronizedList}.\\
 Come abbiamo detto prima però la sincronizzazione non è molto efficiente infatti richiamare un metodo sincronizzato richiede un tempo quattro volte maggiore rispetto a metodi non sincronizzati; inoltre, esso riduce la concorrenza e diminuisce le performance, infine non vi è alcun modo di controllare il meccanismo dei lock.\\
-Con java versione 5 sono stati introdotti nuovi meccanismi di sincronizzazione come la \emph{sincronizzazione condizionata.} Prendiamo come esempio un parcheggio con una certa capacità e dei metodi che permettono l'arrivo e la partenza di automobili come esemplificato nel Listato\,\ref{lst:monitor}.
+Con java versione 5 sono stati introdotti nuovi meccanismi di sincronizzazione come la \emph{sincronizzazione condizionata.} Prendiamo come esempio un parcheggio con una certa capacità e dei metodi che permettono l'arrivo e la partenza di automobili come esemplificato nel  Listato \ref{lst:monitor}.
 \begin{lstlisting} [language=Java,caption={Esempio di controllore di un parcheggio},label=lst:monitor]
 public class CarParkControl {
 	protected int space;
