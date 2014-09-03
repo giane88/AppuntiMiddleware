@@ -10,8 +10,8 @@ xmlns:xapRights='http://ns.adobe.com/xap/1.0/rights/'
 > 
 <xapRights:UsageTerms> 
 <rdf:Alt> 
-<rdf:li xml:lang='x-default' >Quest&#39;opera \begingroup \let \relax \relax \endgroup [Pleaseinsert\PrerenderUnicode{è}intopreamble] distribuita con Licenza &lt;a rel=&#34;license&#34; href=&#34;http://creativecommons.org/licenses/by-nc-sa/4.0/&#34;&gt;Creative Commons Attribuzione - Non commerciale - Condividi allo stesso modo 4.0 Internazionale&lt;/a&gt;.</rdf:li> 
-<rdf:li xml:lang='it' >Quest&#39;opera \begingroup \let \relax \relax \endgroup [Pleaseinsert\PrerenderUnicode{è}intopreamble] distribuita con Licenza &lt;a rel=&#34;license&#34; href=&#34;http://creativecommons.org/licenses/by-nc-sa/4.0/&#34;&gt;Creative Commons Attribuzione - Non commerciale - Condividi allo stesso modo 4.0 Internazionale&lt;/a&gt;.</rdf:li> 
+<rdf:li xml:lang='x-default' >Quest&#39;opera \unhbox \voidb@x \bgroup \let \unhbox \voidb@x \setbox \@tempboxa \hbox {e\global \mathchardef \accent@spacefactor \spacefactor }\accent 18 e\egroup \spacefactor \accent@spacefactor  distribuita con Licenza &lt;a rel=&#34;license&#34; href=&#34;http://creativecommons.org/licenses/by-nc-sa/4.0/&#34;&gt;Creative Commons Attribuzione - Non commerciale - Condividi allo stesso modo 4.0 Internazionale&lt;/a&gt;.</rdf:li> 
+<rdf:li xml:lang='it' >Quest&#39;opera \unhbox \voidb@x \bgroup \let \unhbox \voidb@x \setbox \@tempboxa \hbox {e\global \mathchardef \accent@spacefactor \spacefactor }\accent 18 e\egroup \spacefactor \accent@spacefactor  distribuita con Licenza &lt;a rel=&#34;license&#34; href=&#34;http://creativecommons.org/licenses/by-nc-sa/4.0/&#34;&gt;Creative Commons Attribuzione - Non commerciale - Condividi allo stesso modo 4.0 Internazionale&lt;/a&gt;.</rdf:li> 
 <rdf:li xml:lang='en' >This work is licensed under a &lt;a rel=&#34;license&#34; href=&#34;http://creativecommons.org/licenses/by-nc-sa/4.0/&#34;&gt;Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License&lt;/a&gt;.</rdf:li> 
 </rdf:Alt> 
 </xapRights:UsageTerms> 

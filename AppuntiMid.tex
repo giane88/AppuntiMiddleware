@@ -2,7 +2,7 @@
 
 \usepackage[a4paper,top=3cm,bottom=3.5cm,left=2.5cm,right=2.5cm]{geometry}
 \usepackage{graphicx}
-\usepackage[utf8x]{inputenc}
+\usepackage[utf8]{inputenc}
 \usepackage[italian]{babel}
 \usepackage{fancyhdr}
 \usepackage{amssymb}
@@ -14,6 +14,12 @@
 \usepackage{subfigure}
 \usepackage{listings}
 \usepackage{color}
+\usepackage[backend=bibtex,style=numeric-comp]{biblatex}
+
+\addbibresource{biblio.bib}
+
+
+\lstloadlanguages{C,Java,[CORBA]IDL,[GNU]C++}
 
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
@@ -64,11 +70,12 @@ Quest'opera è stata rilasciata con licenza Creative Commons Attribuzione - Non 
 \pagestyle{plain}
 \include{capitolo1}
 \include{capitolo2}
-%\include{capitolo3}
-%\include{capitolo4}
+\include{capitolo3}
+\include{capitolo4}
 %\include{capitolo5}
 %\include{capitolo6}
 %\include{capitolo7}
 %\include{capitolo8}
 %\include{capitolo9}
+\printbibliography
 \end{document}

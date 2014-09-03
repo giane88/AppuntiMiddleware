@@ -1,0 +1,16 @@
+module Finance {
+	struct AccountDetails {
+        string name;
+        string address;
+        long number;
+        double balance;
+    };
+    
+    exception InsufficentFunds {};
+    
+    interface Account {
+        void deposit (in double amount);
+        void withdraw(in double amount) raises (InsufficentFunds);
+        readonly attribute AccountDetails details;
+    };
+ };
