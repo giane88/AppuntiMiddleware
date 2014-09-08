@@ -1,0 +1,28 @@
+\section{Advance message passing with MPI}\label{capitolo5}
+Il \emph{Message PAssin Interface} (MPI) è un middlewaare studiato per il calcolo ad alte performance; in realtà MPI è solo uno standard che specifica una API esistono poi diverse implementazioni, la più diffusa forse è \emph{OpenMPI}.\\
+Lo scopo di MPI era quello di sviluppare uno standard per un API per il calcolo distribuito ad alte prestazioni che fosse facile da utilizzare, portabile, efficiente e flessibile.\\
+Le chiamate a funzioni sono molto semplice e hanno una struttura del tipo
+\begin{verbatim}
+	rc = MPI_Xxxx (parameter,...)}
+\end{verbatim}
+dove \texttt{rc} restituisce il codice \texttt{MPI\_SUCCESS} in caso di esecuzione corretta del comando. Un esempio di codice MPI è mostrato nel listato \ref{lst:mpihello}
+\begin{lstlisting}[language=C,caption={Hello World con MPI},label=lst:mpihello]
+#include "mpi.h"
+#include <stdio.h>
+
+int main (int argc, char *arrgv[]) {
+	MPI_Init (&argc,&argv);
+	printf("Hello world!\n");
+	MPI_Finalize();
+	return 0
+}
+\end{lstlisting}
+MPI utilizza degli oggetti chiamati \emph{comunicators} e \emph{groups} per organizare delle collezioni di processi e definire lo scopo della comunicazione. Molte delle routine MPI richiedono di specificare un comunicatore come argomento, il comunicatore predefinito è \texttt{MPI\_COMM\_WORLD} ed include tutti i processi MPI. Insieme ad un comunicatore ad ogni processo viene assegnato un proprio \emph{rank}, ovvero un ID univoco che parte da $ 0 $ ed è incrementato progressivamente, questo rank permettte al programmatore di specificare la sorgente e la destinazione di un messaggio ma anche per controllare il flusso di esecuzione.\\
+L'API MPI fornisce una serie di funzioni per controllare ed interrogare l'ambente:
+\begin{itemize}
+	\item \texttt{int MPI\_Comm\_size(MPI\_Comm\_comm, int *size)} serve per reperire il numero di processi presenti in uno specifico comunicatore.
+	\item \texttt{int MPI\_Comm\_rank(MPI\_Comm\_comm, int * rank)} restituisce il rank del processo MPI chiamante all'interno del comunicatore specificato.
+	\item \texttt{int MPI\_Get\_processor\_name (char *name, int *resultlen)} restituisce il nome del processo chiamante tuttavia questa funzione è dipendente dall'implementazione.
+\end{itemize}
+La maggior parte delle routine MPI può essere utilizzata sia in modalità bloccante che non bloccante, nel caso di comunicazione bloccante la \emph{send} restituisce il controllo al programma solo dopo che il buffer è stato svuotato ed è quindi modificabile, questo tuttavia non comporta che i dati siano stati ricevuti, solo nel caso di comunicazione sincrona, e quindi di risposta del ricevente si ha questa certezza; la \emph{receive} invece restituisce il controllo al programma solo quando tutti i dati sono arrivati e sono pronti per essere utilizzati. Nel caso di chiamate non bloccanti sia la \emph{send} che la \emph{receive} non attendono la comunicazione è perciò pericoloso modificare il buffer fino a quando non si è certi che la comunicazione non è stata effettuata. MPI inoltre garantisce l'ordinamento dei messaggi in un singolo processo tuttavia nel caso di multi-threading non si può controllare quale sia il messaggio ricevuto per primo.\\
+La nostra trattazione non si spingerà oltre in quanto le slide \cite{cugola:mpi} trattano argomenti più tecnici che teorici e che quindi verrebberò riportati tali e quali. Oltre alle slide già citate si rimanda anche al tutorial su internet \cite{tutorial:mpi}
